@@ -1,16 +1,10 @@
-from project.models import User
+from project.services import create_user, get_last_user
 
-from project.database import Session, Base, engine
+from project.database import Base, engine
 
 Base.metadata.create_all(engine)
 
-user = User(name='ed')
+create_user(name='ed')
+user = get_last_user()
 
-session = Session()
-session.add(user)
-session.commit()
-
-session = Session()
-fetched = session.query(User).order_by(User.id.desc()).first()
-
-print(fetched.id)
+print(user)
