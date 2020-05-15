@@ -1,10 +1,15 @@
+from project.bootstrap import bootstrap
 from project.services import create_user, get_last_user
 
-from project.database import Base, engine
 
-Base.metadata.create_all(engine)
+def main():
+    bootstrap()
 
-create_user(name='ed')
-user = get_last_user()
+    create_user(name='ed')
+    user = get_last_user()
 
-print(user)
+    print(user)
+
+
+if __name__ == '__main__':
+    main()
